@@ -1,24 +1,86 @@
 console.log('Test');
 
-const gridSize = 16;
+let gridSize = 16;
 
-// const pickGridSize = document
+const pickGridSize = document.getElementById('gridSizePick');
 
-for(let i = 0; i < gridSize; i++) {
-    for(let k = 0; k < gridSize; k++) {
-        // get container
-        const cont = document.getElementById('container');
-        // create a div element
-        const newDiv = document.createElement('div');
-        // Apply class
-        newDiv.classList.add('newDiv');
-        // Set the proper size of each accoding to the size of the box;
-        newDiv.style.width = `${960/gridSize}px`
-        newDiv.style.width = `${960/gridSize}px`
-        // append container 
-        cont.appendChild(newDiv);
-    }  
+function changeGridSize() {
+    let size = prompt("Enter preffered grid size. Maximum 100!");
+    size = parseInt(size);
+    createGrid(size);
+    
 }
+
+pickGridSize.addEventListener('click', changeGridSize);
+
+function createGrid(size) {
+    // get container
+    const cont = document.getElementById('container');
+    container.innerHTML = "";
+    for(let i = 0; i < size; i++) {
+        for(let k = 0; k < size; k++) {
+            
+            // create a div element
+            const newDiv = document.createElement('div');
+            // Apply class
+            newDiv.classList.add('newDiv');
+            // Set the proper size of each accoding to the size of the box;
+            newDiv.style.width = `${960/size}px`
+            newDiv.style.height = `${960/size}px`
+            // append container 
+            cont.appendChild(newDiv);
+        }  
+    }
+
+    const newDivColor = document.querySelectorAll('.newDiv');
+
+
+
+    // CHANGING THE COLOR OF A DIV
+    
+    // add a dondition for a pressed spacebar
+    
+    
+    let isSpacePressed = false;
+    document.addEventListener('keydown', (event) => {
+        if(event.code === 'Space') {
+            event.preventDefault()
+            isSpacePressed = true;
+        }
+    })
+    document.addEventListener('keyup', (event) => {
+        if (event.code === 'Space') {
+            isSpacePressed = false;
+        }
+    })
+    
+    function changeColor(event) {
+        // console.log(event)
+        if(isSpacePressed === true) {
+            event.target.style.backgroundColor = pickedColor;
+        }
+    }
+    
+    newDivColor.forEach(div => {
+            div.addEventListener('mouseover', changeColor);
+        
+    })
+    
+    const clearColor = document.querySelectorAll('.newDiv')
+    
+    const clear = document.getElementById('colorPick');
+    
+    function clearBoard() {
+        clearColor.forEach(div => {
+            div.style.backgroundColor = "white";
+    });
+    };
+    clear.addEventListener('click', clearBoard);
+
+}
+
+createGrid(gridSize);
+
 
 let pickedColor = '';
 
@@ -83,45 +145,7 @@ function pickbrown() {
 }
 brownColor.addEventListener('click', pickbrown);
 
-const newDivColor = document.querySelectorAll('.newDiv');
 
-
-
-// CHANGING THE COLOR OF A DIV
-
-// add a dondition for a pressed spacebar
-
-
-let isSpacePressed = false;
-document.addEventListener('keydown', (event) => {
-    isSpacePressed = true;
-})
-document.addEventListener('keyup', (event) => {
-    isSpacePressed = false;
-})
-
-function changeColor(event) {
-    // console.log(event)
-    if(isSpacePressed === true) {
-        event.target.style.backgroundColor = pickedColor;
-    }
-}
-
-newDivColor.forEach(div => {
-        div.addEventListener('mouseover', changeColor);
-    
-})
-
-const clearColor = document.querySelectorAll('.newDiv')
-
-const clear = document.getElementById('colorPick');
-
-function clearBoard() {
-    clearColor.forEach(div => {
-        div.style.backgroundColor = "white";
-});
-};
-clear.addEventListener('click', clearBoard);
 // const newDivColor = document.getElementById('div');
 
 

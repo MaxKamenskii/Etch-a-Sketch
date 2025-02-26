@@ -1,6 +1,6 @@
 console.log('Test');
 
-const gridSize = 16;
+const gridSize = 100;
 
 for(let i = 0; i < gridSize; i++) {
     for(let k = 0; k < gridSize; k++) {
@@ -10,7 +10,8 @@ for(let i = 0; i < gridSize; i++) {
         const newDiv = document.createElement('div');
         // Apply class
         newDiv.classList.add('newDiv');
-    
+        newDiv.style.width = `${960/gridSize}px`
+        newDiv.style.width = `${960/gridSize}px`
         // const newContent = document.createTextNode("a");
         // newDiv.appendChild(newContent);
     

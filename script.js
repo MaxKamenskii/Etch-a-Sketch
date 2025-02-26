@@ -1,6 +1,6 @@
 console.log('Test');
 
-const gridSize = 100;
+const gridSize = 20;
 
 for(let i = 0; i < gridSize; i++) {
     for(let k = 0; k < gridSize; k++) {
@@ -10,11 +10,9 @@ for(let i = 0; i < gridSize; i++) {
         const newDiv = document.createElement('div');
         // Apply class
         newDiv.classList.add('newDiv');
+        // Set the proper size of each accoding to the size of the box;
         newDiv.style.width = `${960/gridSize}px`
         newDiv.style.width = `${960/gridSize}px`
-        // const newContent = document.createTextNode("a");
-        // newDiv.appendChild(newContent);
-    
         // append container 
         cont.appendChild(newDiv);
     }  
@@ -31,6 +29,16 @@ newDivColor.forEach(div => {
     div.addEventListener('mouseover', changeColor);
 })
 
+const clearColor = document.querySelectorAll('.newDiv')
+
+const clear = document.getElementById('colorPick');
+
+function clearBoard() {
+    clearColor.forEach(div => {
+        div.style.backgroundColor = "black";
+});
+};
+clear.addEventListener('click', clearBoard);
 // const newDivColor = document.getElementById('div');
 
 

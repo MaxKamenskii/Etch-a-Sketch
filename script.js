@@ -7,6 +7,12 @@ const pickGridSize = document.getElementById('gridSizePick');
 function changeGridSize() {
     let size = prompt("Enter preffered grid size. Maximum 100!");
     size = parseInt(size);
+
+    if(size > 100) {
+        alert('Wrong number! Pick the number less or equal to 100');
+        let size = prompt("Enter preffered grid size. Maximum 100!");
+        size = parseInt(size);
+    }
     createGrid(size);
     
 }
